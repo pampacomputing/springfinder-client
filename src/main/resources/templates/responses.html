@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Respostas Recebidas</title>
+    <link rel="stylesheet" th:href="@{/responses.css}">
+</head>
+<body>
+<a href="/" id="back-button">⬅ Voltar</a>
+<button id="toggle-theme">🌗</button>
+
+<!-- empty state -->
+<div th:if="${#lists.isEmpty(responses)}">
+    <p>Nenhuma resposta disponível no momento. Por favor, envie uma requisição para ver os resultados aqui!</p>
+</div>
+
+<!-- only show pagination & table when there's data -->
+<div class="pagination">
+    <a class="btn" th:if="${currentPage > 0}"
+       th:href="@{/responses(page=${currentPage - 1})}">
+        ← Anterior
+    </a>
+    <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+    <a class="btn" th:if="${currentPage < totalPages - 1}"
+       th:href="@{/responses(page=${currentPage + 1})}">
+        Próximo →
+    </a>
+</div>
+
+
+<!-- one table per page -->
+<div th:each="res : ${responses}">
+    <h2>ID Requisição: <span th:text="${res.id_request}"></span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Gênero</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${res.data}">
+            <td th:text="${user.cpf}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.gender}"></td>
+            <td th:text="${user.date}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- bottom pagination -->
+<div class="pagination">
+    <a class="btn" th:if="${currentPage > 0}"
+       th:href="@{/responses(page=${currentPage - 1})}">
+        ← Anterior
+    </a>
+    <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+    <a class="btn" th:if="${currentPage < totalPages - 1}"
+       th:href="@{/responses(page=${currentPage + 1})}">
+        Próximo →
+    </a>
+</div>
+
+</div>
+
+<script th:src="@{/theme-toggle.js}"></script>
+</body>
+</html>
