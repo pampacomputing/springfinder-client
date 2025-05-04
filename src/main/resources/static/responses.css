@@ -145,7 +145,6 @@ td {
     font-size: 16px;
     border-radius: 8px;
     text-decoration: none;
-    margin: 0 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 50px
@@ -153,4 +152,10 @@ td {
 
 .pagination .btn:hover {
     background-color: var(--button-hover);
+}
+
+.msg{
+    text-align: center;
+    color: white;
+    margin-top: 50px
 }

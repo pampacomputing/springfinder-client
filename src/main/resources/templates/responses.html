@@ -10,7 +10,7 @@
 <button id="toggle-theme">🌗</button>
 
 <!-- empty state -->
-<div th:if="${#lists.isEmpty(responses)}">
+<div class="msg" th:if="${#lists.isEmpty(responses)}">
     <p>Nenhuma resposta disponível no momento. Por favor, envie uma requisição para ver os resultados aqui!</p>
 </div>
 
