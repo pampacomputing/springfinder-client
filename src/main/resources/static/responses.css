@@ -147,7 +147,6 @@ td {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 50px
 }
 
 .pagination .btn:hover {
@@ -157,5 +156,4 @@ td {
 .msg{
     text-align: center;
     color: white;
-    margin-top: 50px
 }
