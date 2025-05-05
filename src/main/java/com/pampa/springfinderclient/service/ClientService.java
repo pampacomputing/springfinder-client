@@ -6,6 +6,7 @@ import com.pampa.springfinderclient.model.User;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -21,21 +22,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class ClientService {
-    private static Logger logger = LoggerFactory.getLogger(ClientService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ClientService.class);
 
     private final RestTemplate restTemplate;
     private final AtomicInteger requestCounter = new AtomicInteger(0);
+    private final String apiUrl;
 
-    public ClientService(RestTemplate restTemplate) {
+    public ClientService(RestTemplate restTemplate, @Value("${app.user-info.url}") String apiUrl) {
         this.restTemplate = restTemplate;
+        this.apiUrl = apiUrl;
     }
 
     @Async
     public void sendUser(User user) {
         try {
             int currentId = requestCounter.incrementAndGet();
-
-            String apiUrl = "https://26.76.169.248:9000/user-info";
 
             ResponseEntity<ResponseData> response = restTemplate.postForEntity(apiUrl, user, ResponseData.class);
 
@@ -55,7 +56,17 @@ public class ClientService {
     private void saveResponseAsJson(ResponseData responseData) {
         File dir = new File("data");
         if (!dir.exists()) {
-            dir.mkdirs();
+            try{
+                boolean result = dir.mkdirs();
+                if (result) {
+                    logger.info("Diretório data criado com sucesso.");
+                } else {
+                    logger.warn("Não foi possível criar o diretório data.");
+                }
+            } catch (SecurityException e) {
+                logger.error("Erro ao criar diretório data: " + e.getMessage());
+            }
+
         }
 
         ObjectMapper mapper = new ObjectMapper();
