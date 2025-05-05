@@ -1,11 +1,4 @@
-keytool -genkeypair -alias springfinder-server -keyalg RSA -keysize 2048 -dname
-"CN=IP_ADDRESS, OU=Pampa, O=Pampa, L=Sao Paulo, ST=Sao Paulo, C=BR" -ext
-SAN=IP:IP_ADDRESS -validity 365 -keystore springfinder-server.jks -storepass
-springfinder
-
-keytool -exportcert -alias springfinder-server -file springfinder-server.crt
--keystore springfinder-server.jks -storepass springfinder -rfc
-
+#CLIENT
 keytool -importcert -alias springfinder-server -file springfinder-server.crt
 -keystore client-truststore.jks -storetype JKS -storepass springfinder
 -noprompt
