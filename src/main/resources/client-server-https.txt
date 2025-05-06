@@ -1,0 +1,1 @@
+keytool -genkeypair -alias springfinder-client -keyalg RSA -keysize 2048 -dname "CN=192.168.0.102, OU=Pampa, O=Pampa, L=Sao Paulo, ST=Sao Paulo, C=BR" -ext SAN=IP:192.168.0.102 -validity 365 -keystore springfinder-client.jks -storepass springfinder
