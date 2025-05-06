@@ -1,7 +1,4 @@
 #CLIENT
-keytool -importcert -alias springfinder-server -file springfinder-server.crt
--keystore client-truststore.jks -storetype JKS -storepass springfinder
--noprompt
+keytool -importcert -alias springfinder-server -file springfinder-server.crt -keystore client-truststore.jks -storetype JKS -storepass springfinder -noprompt
 
--Djavax.net.ssl.trustStore=C:\Users\Francesco\IdeaProjects\springfinder-client\src\main\resources\client-truststore.jks
--Djavax.net.ssl.trustStorePassword=springfinder
+-Djavax.net.ssl.trustStore=C:\Users\Francesco\IdeaProjects\springfinder-client\src\main\resources\client-truststore.jks -Djavax.net.ssl.trustStorePassword=springfinder
