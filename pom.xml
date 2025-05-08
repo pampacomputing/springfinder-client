@@ -91,6 +91,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <jvmArguments>
+                        -Djavax.net.ssl.trustStore=${user.dir}/src/main/resources/client-truststore.jks
+                        -Djavax.net.ssl.trustStorePassword=springfinder
+                        -Djavax.net.ssl.trustStoreType=JKS
+                    </jvmArguments>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
