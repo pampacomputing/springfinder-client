@@ -6,8 +6,6 @@
     <link rel="stylesheet" th:href="@{/responses.css}">
 </head>
 <body>
-<a href="/" id="back-button">⬅ Voltar</a>
-<button id="toggle-theme">🌗</button>
 
 <!-- empty state -->
 <div class="msg" th:if="${#lists.isEmpty(responses)}">
@@ -16,15 +14,21 @@
 
 <!-- only show pagination & table when there's data -->
 <div class="pagination">
-    <a class="btn" th:if="${currentPage > 0}"
-       th:href="@{/responses(page=${currentPage - 1})}">
-        ← Anterior
-    </a>
-    <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
-    <a class="btn" th:if="${currentPage < totalPages - 1}"
-       th:href="@{/responses(page=${currentPage + 1})}">
-        Próximo →
-    </a>
+    <a href="/" id="back-button">⬅ Voltar</a>
+    <button id="toggle-theme">🌗</button>
+    <div style="margin-top: 50px">
+
+        <a class="btn" th:if="${currentPage > 0}"
+           th:href="@{/responses(page=${currentPage - 1})}">
+            ← Anterior
+        </a>
+
+        <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+        <a class="btn" th:if="${currentPage < totalPages - 1}"
+           th:href="@{/responses(page=${currentPage + 1})}">
+            Próximo →
+        </a>
+    </div>
 </div>
 
 
@@ -52,7 +56,7 @@
 </div>
 
 <!-- bottom pagination -->
-<div class="pagination">
+<div class="pagination" style="margin-top: 50px">
     <a class="btn" th:if="${currentPage > 0}"
        th:href="@{/responses(page=${currentPage - 1})}">
         ← Anterior
@@ -62,8 +66,6 @@
        th:href="@{/responses(page=${currentPage + 1})}">
         Próximo →
     </a>
-</div>
-
 </div>
 
 <script th:src="@{/theme-toggle.js}"></script>
